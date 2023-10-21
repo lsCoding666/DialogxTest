@@ -30,9 +30,6 @@ import com.test.mylibrary.viewmodels.MainViewModel;
 import java.io.File;
 import java.util.Objects;
 
-import butterknife.BindView;
-import butterknife.OnClick;
-
 public class MainFragment extends BaseFragmentViewBinding<BasePresenter, BaseViewModel, ComitFragmentMainPhoneBinding> {
 
     private static final String TAG = "MainFragment";

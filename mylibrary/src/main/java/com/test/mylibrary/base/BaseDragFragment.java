@@ -29,11 +29,6 @@ import com.test.mylibrary.util.ScreenUtil;
 import com.test.mylibrary.util.XUtil;
 import com.test.mylibrary.viewmodels.MainViewModel;
 
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-import butterknife.Optional;
-import butterknife.Unbinder;
-
 /**
  * Description : BaseFragment
  *
@@ -44,7 +39,6 @@ import butterknife.Unbinder;
 public abstract class BaseDragFragment<P extends BasePresenter, T extends BaseViewModel>
         extends Fragment implements BaseView, View.OnTouchListener {
 
-    private Unbinder unbinder;
     protected FragmentActivity mContext;
     private OnDragListener onDragListener;
     public MainViewModel mainViewModel;
@@ -133,7 +127,6 @@ public abstract class BaseDragFragment<P extends BasePresenter, T extends BaseVi
     public void onDestroyView() {
         super.onDestroyView();
         // do something
-        unbinder.unbind();
         // 销毁时，解除绑定
         if (presenter != null) {
             presenter.detachView();

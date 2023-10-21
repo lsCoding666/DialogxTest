@@ -27,9 +27,6 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.navigation.NavController;
 
-import com.donkingliang.labels.LabelsView;
-import com.hyperai.hyperlpr3.HyperLPR3;
-import com.hyperai.hyperlpr3.bean.HyperLPRParameter;
 import com.nex3z.flowlayout.FlowLayout;
 import com.permissionx.guolindev.PermissionX;
 import com.permissionx.guolindev.callback.RequestCallback;
@@ -44,9 +41,6 @@ import com.test.mylibrary.widget.CustomConfirmDialog;
 
 import java.util.List;
 
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
-
 /**
  * Description : BaseFragment
  *
@@ -57,7 +51,6 @@ import butterknife.Unbinder;
 public abstract class BaseFragment<P extends BasePresenter, T extends BaseViewModel> extends Fragment implements BaseView {
 
     private Class<P> presenterClass;
-    private Unbinder unbinder;
     public FragmentActivity mContext;
     protected T viewModel;
     private Class<T> viewModelClass;
@@ -271,9 +264,6 @@ public abstract class BaseFragment<P extends BasePresenter, T extends BaseViewMo
     public void onDestroyView() {
         super.onDestroyView();
         // do something
-        if (isNeedButterKnife()) {
-            unbinder.unbind();
-        }
         // 销毁时，解除绑定
         if (presenter != null) {
             presenter.detachView();
@@ -317,13 +307,6 @@ public abstract class BaseFragment<P extends BasePresenter, T extends BaseViewMo
         // 注册Activity生命周期
         mContext.getApplication().registerActivityLifecycleCallbacks(ActivityUtil.getActivityLifecycleCallbacks());
         requestPermission();
-        // 车牌识别算法配置参数
-        HyperLPRParameter parameter = new HyperLPRParameter()
-                .setDetLevel(HyperLPR3.DETECT_LEVEL_LOW)
-                .setMaxNum(1)
-                .setRecConfidenceThreshold(0.75f);
-// 初始化(仅执行一次生效)
-        HyperLPR3.getInstance().init(mContext, parameter);
         // 由于这个时候activity已经创建了 所以第一个要手动入栈
         ActivityUtil.activityStack.push(getActivity());
 

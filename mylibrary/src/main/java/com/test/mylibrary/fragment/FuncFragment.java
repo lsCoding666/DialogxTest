@@ -8,8 +8,6 @@ import com.test.mylibrary.R;
 import com.test.mylibrary.base.BaseFragment;
 import com.test.mylibrary.base.BasePresenter;
 
-import butterknife.BindView;
-
 public class FuncFragment extends BaseFragment {
 
     private static final String TAG = "FuncFragment";

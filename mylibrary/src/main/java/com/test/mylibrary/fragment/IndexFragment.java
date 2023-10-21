@@ -5,6 +5,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.kongzue.dialogx.dialogs.BottomDialog;
@@ -25,7 +26,6 @@ import com.test.mylibrary.widget.customSpinnerDialog.CustomSpinnerDialogNew;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
 
 public class IndexFragment extends BaseDragFragmentViewBinding<BasePresenter, BaseViewModel, ComitFragmentIndexBinding> {
     public static final int REQUEST_CODE_SCAN_FOR_BIND_PAPER = 5001;
@@ -34,6 +34,11 @@ public class IndexFragment extends BaseDragFragmentViewBinding<BasePresenter, Ba
     private MainFragment parentFragment;
 
     private static final String TAG = "IndexFragment";
+    private RelativeLayout rlSignDate;
+    private RelativeLayout rlSign;
+    private ImageView ivSign;
+    private ImageView ivSignDate;
+    private Button btnCommitSign;
 
     public IndexFragment(MainFragment parentFragment) {
         this.parentFragment = parentFragment;
@@ -65,7 +70,7 @@ public class IndexFragment extends BaseDragFragmentViewBinding<BasePresenter, Ba
         binding.btnTest2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                showSignDialog();
             }
         });
     }
@@ -74,65 +79,7 @@ public class IndexFragment extends BaseDragFragmentViewBinding<BasePresenter, Ba
         new BottomDialog(new OnBindView<BottomDialog>(R.layout.comit_dialog_addcase_dsr_sign_date) {
             @Override
             public void onBind(BottomDialog dialog, View v) {
-                rlSign = v.findViewById(R.id.rlPersonalSign);
-                rlSignDate = v.findViewById(R.id.rlSignDate);
-                ivSign = v.findViewById(R.id.ivPersonSign);
-                ivSignDate = v.findViewById(R.id.ivPersonalSignDate);
-                btnCommitSign = v.findViewById(R.id.btnCommit);
-                Button btnCancel = v.findViewById(R.id.btnCancel);
 
-                if (dateBitmap != null) {
-                    ivSignDate.setImageBitmap(dateBitmap);
-                    ivSignDate.setVisibility(View.VISIBLE);
-                }
-                if (signBitmap != null) {
-                    ivSign.setImageBitmap(signBitmap);
-                    ivSign.setVisibility(View.VISIBLE);
-                }
-
-                rlSign.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        model.getWhichSign().setValue(0);
-                        navigate(R.id.action_addCaseSendPaperSuccessFragment_to_addCaseSignFragment);
-                        dialog.dismiss();
-                    }
-                });
-                rlSignDate.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        model.getWhichSign().setValue(1);
-                        navigate(R.id.action_addCaseSendPaperSuccessFragment_to_addCaseSignFragment);
-                        dialog.dismiss();
-                    }
-                });
-
-                btnCommitSign.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        if (signBitmap == null) {
-                            ToastUtil.showToast2("请签名");
-                            return;
-                        }
-                        if (dateBitmap == null) {
-                            ToastUtil.showToast2("请签署日期");
-                            return;
-                        }
-                        ToastUtil.showToast2("请仔细核对签名和日期是否正确，提交后不能更改！", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                presenter.uploadPartySign(viewModel.getCaseCode().getValue(), signBitmap, dateBitmap);
-                                dialog.dismiss();
-                            }
-                        });
-                    }
-                });
-                btnCancel.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        dialog.dismiss();
-                    }
-                });
             }
         }).setDialogLifecycleCallback(new DialogLifecycleCallback<BottomDialog>() {
             @Override

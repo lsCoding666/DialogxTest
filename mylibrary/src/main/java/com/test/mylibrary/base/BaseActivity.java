@@ -12,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.test.mylibrary.R;
 import com.test.mylibrary.util.XUtil;
 
-import butterknife.ButterKnife;
 
 @SuppressWarnings("rawtypes")
 public abstract class BaseActivity<P extends BasePresenter> extends AppCompatActivity
@@ -46,7 +45,6 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
         //        //设置竖屏
         //        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(LayoutInflater.from(this).inflate(getLayoutId(), null));
-        ButterKnife.bind(this);
         presenter = createPresenter();
         initData();
         initView();
