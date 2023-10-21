@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/container_ll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/comit_layout_titlebar" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/drop_view"
+            android:layout_width="16dp"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <View
+                android:layout_width="5dp"
+                android:layout_height="32dp"
+                android:background="@drawable/comit_bg_drop_item" />
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/addcase_fl"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="16dp"
+            android:layout_toEndOf="@+id/drop_view"
+            android:visibility="gone" />
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragment"
+            android:name="com.test.mylibrary.base.NavHostFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="16dp"
+            android:layout_toEndOf="@+id/drop_view"
+            app:defaultNavHost="true"
+            app:navGraph="@navigation/progress_case_navigaiton" />
+
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:id="@+id/main_ll"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:id="@+id/workspace_fl"
+        android:visibility="visible"
+        android:layout_alignParentEnd="true"
+        android:layout_height="match_parent"/>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:minWidth="29dp"
+        android:id="@+id/func_fl"
+        android:layout_marginLeft="16dp"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
+
+</RelativeLayout>

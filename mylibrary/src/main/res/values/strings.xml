@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="loading">加载中</string>
+    <string name="gsonIsNull">gson is null</string>
+    <string name="MEDIA_TYPE">111</string>
+    <string name="errorMsg">错误</string>
+    <string name="loginFail">登录失败</string>
+    <string name="errorCode">errorCode</string>
+    <string name="PARSE_ERROR_MSG">解析json失败</string>
+    <string name="BAD_NETWORK_MSG">网络异常</string>
+    <string name="CONNECT_ERROR_MSG">连接异常</string>
+    <string name="CONNECT_TIMEOUT_MSG">连接超时</string>
+    <string name="OTHER_MSG">其他错误</string>
+</resources>
